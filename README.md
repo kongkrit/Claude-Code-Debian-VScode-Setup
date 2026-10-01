@@ -13,7 +13,7 @@ Build/run dependencies for the projects in this workspace.
 ### Install command
 
 ```bash
-sudo apt install -y git gh python3 python3-venv python3-pip python3-dev build-essential curl
+sudo apt install -y git gh python3 python3-venv python3-pip python3-dev build-essential curl jq wget
 ```
 
 ### What each package is for
