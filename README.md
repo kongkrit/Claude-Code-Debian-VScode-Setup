@@ -28,6 +28,8 @@ sudo apt install -y git gh python3 python3-venv python3-pip python3-dev build-es
 | `python3-dev` | C headers for building any dependency that lacks a prebuilt wheel. |
 | `build-essential` | C/C++ compiler + make, for the same source-build cases. Precautionary. |
 | `curl` | Used by a data-fetch script to download source CSVs. |
+| `jq` | Command-line JSON processor: parses, filters, and reshapes JSON (e.g., API responses or `gh ... --json` output) in shell scripts. |
+| `wget` | Non-interactive file downloader: handles large or interrupted downloads (`-c` resumes) and recursive fetches. Overlaps with `curl`. Some install scripts call it specifically. |
 
 ### Docker multi-arch builds (one-time setup)
 
