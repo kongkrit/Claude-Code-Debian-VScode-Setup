@@ -61,6 +61,26 @@ docker buildx create --name multiarch --driver docker-container --bootstrap --us
 > automatically via Rosetta), so the first line is usually unnecessary — the
 > `buildx create` line is all you need.
 
+### Shell aliases
+
+Append these `ls` aliases to `~/.bashrc`:
+
+```bash
+cat >> ~/.bashrc <<'EOF'
+alias ls='ls --color=auto'
+alias l='ls -CF'
+alias la='ls -A'
+alias ll='ls -l'
+alias lla='ls -lA'
+alias llh='ls -lh'
+alias llah='ls -lAh'
+EOF
+```
+
+Only `ls` needs `--color=auto`: bash expands the `ls` at the start of the other aliases too, so they inherit it.
+
+Then run `source ~/.bashrc` or open a new shell.
+
 ### Not required
 
 - **node / npm** — the one web project is a static PWA with a vendored `.wasm` binary; there is no build step. Serve it locally with `python3 -m http.server`.
