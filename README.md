@@ -61,6 +61,22 @@ docker buildx create --name multiarch --driver docker-container --bootstrap --us
 > automatically via Rosetta), so the first line is usually unnecessary — the
 > `buildx create` line is all you need.
 
+### Put `/tmp` on disk (one-time setup)
+
+Debian 13 mounts `/tmp` as tmpfs (RAM-backed), capped at boot to half the VM's RAM — 3.9 GiB on an 8 GB VM. Claude Code subagents can fill that. Move `/tmp` to the root disk:
+
+```bash
+sudo systemctl mask tmp.mount
+sudo reboot
+```
+
+- After the reboot, `/tmp` is an ordinary directory on the root disk; the cap is gone.
+- Debian still deletes `/tmp` files untouched for 10 days.
+- Adding RAM only raises the cap (half of RAM); it doesn't remove it. The balloon device (`virtio_balloon`) doesn't help: the cap is set once at boot.
+- tmpfs pages already spill to swap under memory pressure, so the disk-backed `/tmp` is barely slower in practice.
+
+Verify: `findmnt /tmp` prints nothing (no separate mount).
+
 ### Shell aliases
 
 Append these `ls` aliases to `~/.bashrc`:
